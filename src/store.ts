@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { GraphNode, NodeType } from './types';
+import { create } from "zustand";
+import { GraphNode, NodeType } from "./types";
 
 interface AppState {
   activeNode: GraphNode | null;
@@ -8,10 +8,12 @@ interface AppState {
   setHoverNode: (node: GraphNode | null) => void;
   isCmdPaletteOpen: boolean;
   setCmdPaletteOpen: (isOpen: boolean) => void;
-  activeClusterFilter: NodeType | 'all';
-  setActiveClusterFilter: (type: NodeType | 'all') => void;
+  activeClusterFilter: NodeType | "all";
+  setActiveClusterFilter: (type: NodeType | "all") => void;
   cameraRef: any;
   setCameraRef: (ref: any) => void;
+  isMuted: boolean;
+  toggleMute: () => void;
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -21,8 +23,10 @@ export const useStore = create<AppState>((set) => ({
   setHoverNode: (node) => set({ hoverNode: node }),
   isCmdPaletteOpen: false,
   setCmdPaletteOpen: (isOpen) => set({ isCmdPaletteOpen: isOpen }),
-  activeClusterFilter: 'all',
+  activeClusterFilter: "all",
   setActiveClusterFilter: (type) => set({ activeClusterFilter: type }),
   cameraRef: null,
   setCameraRef: (ref) => set({ cameraRef: ref }),
+  isMuted: false,
+  toggleMute: () => set((state) => ({ isMuted: !state.isMuted })),
 }));

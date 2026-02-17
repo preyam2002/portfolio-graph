@@ -16,8 +16,12 @@ export default defineConfig(({ mode }) => {
       },
       resolve: {
         alias: {
-          '@': path.resolve(__dirname, '.'),
+          '@': path.resolve(__dirname, './src'),
+          'three/webgpu': 'three/examples/jsm/renderers/webgpu/WebGPURenderer.js',
         }
+      },
+      optimizeDeps: {
+        include: ['three'],
       }
     };
 });
